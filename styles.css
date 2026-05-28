@@ -1,0 +1,229 @@
+/* styles.css – Premium Regency Visual Novel Theme */
+
+/* Reset & Box Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+}
+
+/* Theme Variables */
+:root {
+  /* Light Romantic Palette */
+  --color-cream: #FFF8F2;
+  --color-blush: #F8D7DA;
+  --color-gold: #D8B26E;
+  --color-rose: #E6B8AF;
+  --color-sage: #BFD8C1;
+  --color-soft-brown: #8C6E63;
+  --color-lavender: #DCCCF5;
+  --color-gold-accent: #D8B26E;
+}
+
+[data-theme="dark"] {
+  /* Night Romance Palette */
+  --color-cream: #2E1E2D; /* deep plum background */
+  --color-blush: #4A2A3A; /* muted rose */
+  --color-gold: #A6785C; /* soft gold */
+  --color-rose: #5A3749;
+  --color-sage: #3B2E28;
+  --color-soft-brown: #5F3E36;
+  --color-lavender: #4B3753;
+  --color-gold-accent: #A6785C;
+}
+
+/* Gradient Background */
+:root {
+  --bg-gradient: linear-gradient(135deg, var(--color-cream), var(--color-blush));
+}
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, var(--color-cream), var(--color-rose));
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--color-gold);
+}
+.title {
+  font-size: 2.2rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Layout Containers */
+.header, .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .header,
+[data-theme="dark"] .footer {
+  background: rgba(0,0,0,0.5);
+}
+
+.game-container {
+  max-width: 100%;
+  padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+/* Cards & Dialogues */
+.dialogue-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 1.2rem;
+  margin: 1rem 0;
+  line-height: 1.5;
+  font-size: 1rem;
+  animation: fadeUp 0.5s ease forwards;
+}
+[data-theme="dark"] .dialogue-card {
+  background: rgba(30,30,30,0.9);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Choice Buttons */
+.choice-btn {
+  width: 100%;
+  max-width: 350px;
+  margin: 0.4rem auto;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-gold);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: block;
+}
+.choice-btn:hover {
+  background: #c5a06d;
+  transform: translateY(-2px);
+}
+[data-theme="dark"] .choice-btn {
+  background: var(--color-gold);
+}
+
+/* Stat Bars */
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 0.6rem;
+}
+.stat {
+  flex: 1 1 45%;
+  max-width: 200px;
+}
+.stat-label {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.stat-progress {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-soft-brown);
+  overflow: hidden;
+}
+.stat-progress .fill {
+  height: 100%;
+  background: var(--color-gold);
+  width: 0%;
+  transition: width 0.4s ease;
+}
+[data-theme="dark"] .stat-progress .fill {
+  background: var(--color-gold);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+.modal-content {
+  background: var(--color-cream);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 90%;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .modal-content { background: var(--color-cream); }
+
+/* Icon Button */
+.icon-button, .icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 360px) {
+  .title { font-size: 2.4rem; }
+}
+@media (min-width: 768px) {
+  .title { font-size: 2.8rem; }
+  .choice-btn { max-width: 500px; }
+  .stat { flex: 1 1 30%; }
+}
+
+/* Floating Petal Animation */
+.petal {
+  position: absolute;
+  top: -10px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-rose);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall 12s linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Hide overflow on mobile */
+body { overflow-x: hidden; }
+
+/* Ensure touch-friendly spacing */
+button, .choice-btn { min-height: 48px; }
+
+
+#main {
+  transition: opacity 0.35s ease,
+              transform 0.35s ease;
+}

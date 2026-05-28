@@ -1,0 +1,640 @@
+
+{
+  "chapters": [
+    {
+      "id": "chapter1",
+      "title": "The Matchmaker",
+      "scenes": [
+        {
+          "id": "c1s1",
+          "speaker": "Clara",
+          "text": "Mema, I have loved you for so long. Should I confess my feelings to Sir Edwin?",
+          "choices": [
+            {
+              "text": "Encourage her confession.",
+              "effects": {
+                "relationships": { "Clara": 10 },
+                "reputation": 5,
+                "memoryTags": ["clara_confession_encouraged"]
+              },
+              "nextScene": "c1s2"
+            },
+            {
+              "text": "Advise patience.",
+              "effects": {
+                "relationships": { "Clara": 5 },
+                "reputation": 2,
+                "memoryTags": ["clara_advised_patience"]
+              },
+              "nextScene": "c1s2"
+            },
+            {
+              "text": "Secretly interfere and discourage her.",
+              "effects": {
+                "relationships": { "Clara": -8 },
+                "reputation": -5,
+                "memoryTags": ["clara_feeling_betrayed"]
+              },
+              "nextScene": "c1s2"
+            }
+          ]
+        },
+        {
+          "id": "c1s2",
+          "speaker": "Narrator",
+          "text": "Clara takes your advice and decides to act accordingly.",
+          "choices": [
+            {
+              "text": "Continue",
+              "effects": {},
+              "nextScene": "c1s3"
+            }
+          ]
+        },
+        {
+          "id": "c1s3",
+          "speaker": "Sir Edwin",
+          "text": "Mademoiselle Woodvale, I have admired your wit and grace. Might we share a stroll in the gardens?",
+          "choices": [
+            {
+              "text": "Accept the stroll.",
+              "effects": {
+                "relationships": { "Sir Edwin": 8 },
+                "reputation": 3,
+                "memoryTags": ["accepted_edwin_stroll"]
+              },
+              "nextScene": "c2s1"
+            },
+            {
+              "text": "Decline politely.",
+              "effects": {
+                "relationships": { "Sir Edwin": -5 },
+                "reputation": -2,
+                "memoryTags": ["declined_edwin"]
+              },
+              "nextScene": "c2s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter2",
+      "title": "A Gentleman Arrives",
+      "scenes": [
+        {
+          "id": "c2s1",
+          "speaker": "Lucien",
+          "text": "Good day, Miss Woodvale. I have heard tales of your intellect. May I join you for tea?",
+          "choices": [
+            {
+              "text": "Flirt playfully.",
+              "effects": {
+                "relationships": { "Lucien": 12 },
+                "reputation": 4,
+                "memoryTags": ["flirted_with_lucien"]
+              },
+              "nextScene": "c2s2"
+            },
+            {
+              "text": "Ignore him.",
+              "effects": {
+                "relationships": { "Lucien": -6 },
+                "reputation": -3,
+                "memoryTags": ["ignored_lucien"]
+              },
+              "nextScene": "c2s2"
+            },
+            {
+              "text": "Distrust his motives.",
+              "effects": {
+                "relationships": { "Lucien": -4 },
+                "reputation": -1,
+                "memoryTags": ["distrusted_lucien"]
+              },
+              "nextScene": "c2s2"
+            }
+          ]
+        },
+        {
+          "id": "c2s2",
+          "speaker": "Theodore",
+          "text": "Mema, Lucien's charm may hide a reckless heart. Be cautious.",
+          "choices": [
+            {
+              "text": "Listen to Theodore.",
+              "effects": {
+                "relationships": { "Theodore": 6 },
+                "reputation": 2,
+                "memoryTags": ["trusted_theodore"]
+              },
+              "nextScene": "c3s1"
+            },
+            {
+              "text": "Dismiss his warning.",
+              "effects": {
+                "relationships": { "Theodore": -5 },
+                "reputation": -2,
+                "memoryTags": ["ignored_theodore"]
+              },
+              "nextScene": "c3s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter3",
+      "title": "Tea, Rumors & Pride",
+      "scenes": [
+        {
+          "id": "c3s1",
+          "speaker": "Narrator",
+          "text": "Gossip swirls through Rosemere Gardens. Your recent choices have caught many eyes.",
+          "choices": [
+            {
+              "text": "Embrace the attention.",
+              "effects": {
+                "reputation": 10,
+                "pride": 8,
+                "memoryTags": ["pride_rise"]
+              },
+              "nextScene": "c3s2"
+            },
+            {
+              "text": "Remain humble.",
+              "effects": {
+                "reputation": 5,
+                "pride": -4,
+                "memoryTags": ["humble_attitude"]
+              },
+              "nextScene": "c3s2"
+            }
+          ]
+        },
+        {
+          "id": "c3s2",
+          "speaker": "Eleanor",
+          "text": "Mema, I admire your poise, but whispers say you are too proud. How will you respond?",
+          "choices": [
+            {
+              "text": "Acknowledge the concern.",
+              "effects": {
+                "relationships": { "Eleanor": 7 },
+                "reputation": 2,
+                "memoryTags": ["elegant_selfawareness"]
+              },
+              "nextScene": "c4s1"
+            },
+            {
+              "text": "Dismiss the rumors.",
+              "effects": {
+                "relationships": { "Eleanor": -5 },
+                "reputation": -3,
+                "memoryTags": ["ignored_eleanor"]
+              },
+              "nextScene": "c4s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter4",
+      "title": "The Garden Gathering",
+      "scenes": [
+        {
+          "id": "c4s1",
+          "speaker": "Narrator",
+          "text": "The town’s finest gather beneath the roses. Dance partners are chosen based on reputation and affection.",
+          "choices": [
+            {
+              "text": "Dance with Theodore.",
+              "effects": {
+                "relationships": { "Theodore": 12 },
+                "reputation": 4,
+                "memoryTags": ["danced_theodore"]
+              },
+              "nextScene": "c4s2"
+            },
+            {
+              "text": "Dance with Lucien.",
+              "effects": {
+                "relationships": { "Lucien": 10 },
+                "reputation": 3,
+                "memoryTags": ["danced_lucien"]
+              },
+              "nextScene": "c4s2"
+            },
+            {
+              "text": "Stay aloof.",
+              "effects": {
+                "reputation": -2,
+                "memoryTags": ["aloof_at_gathering"]
+              },
+              "nextScene": "c4s2"
+            }
+          ]
+        },
+        {
+          "id": "c4s2",
+          "speaker": "Vivienne",
+          "text": "Mema, your presence tonight could cement or crumble our social order. Choose your allies wisely.",
+          "choices": [
+            {
+              "text": "Align with Vivienne.",
+              "effects": {
+                "relationships": { "Vivienne": 11 },
+                "reputation": 6,
+                "influence": 5,
+                "memoryTags": ["aligned_vivienne"]
+              },
+              "nextScene": "c5s1"
+            },
+            {
+              "text": "Oppose her subtle maneuver.",
+              "effects": {
+                "relationships": { "Vivienne": -7 },
+                "reputation": -4,
+                "memoryTags": ["opposed_vivienne"]
+              },
+              "nextScene": "c5s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter5",
+      "title": "Broken Hearts",
+      "scenes": [
+        {
+          "id": "c5s1",
+          "speaker": "Clara",
+          "text": "Mema, I overheard a cruel rumor about Sir Edwin. Should I confront him?",
+          "choices": [
+            {
+              "text": "Confront him directly.",
+              "effects": {
+                "relationships": { "Sir Edwin": -10 },
+                "reputation": -5,
+                "memoryTags": ["confronted_edwin"]
+              },
+              "nextScene": "c5s2"
+            },
+            {
+              "text": "Handle it quietly.",
+              "effects": {
+                "relationships": { "Clara": 6 },
+                "reputation": 3,
+                "memoryTags": ["handled_quietly"]
+              },
+              "nextScene": "c5s2"
+            },
+            {
+              "text": "Ignore the rumor.",
+              "effects": {
+                "relationships": { "Clara": -4 },
+                "reputation": -2,
+                "memoryTags": ["ignored_rumor"]
+              },
+              "nextScene": "c5s2"
+            }
+          ]
+        },
+        {
+          "id": "c5s2",
+          "speaker": "Narrator",
+          "text": "Your decision ripples through the town, shaping how others trust you.",
+          "choices": [
+            {
+              "text": "Continue",
+              "effects": {},
+              "nextScene": "c6s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter6",
+      "title": "The Ballroom Night",
+      "scenes": [
+        {
+          "id": "c6s1",
+          "speaker": "Narrator",
+          "text": "The grand ballroom glitters. Music swells, and pairs are chosen.",
+          "choices": [
+            {
+              "text": "Dance with Theodore.",
+              "effects": {
+                "relationships": { "Theodore": 15 },
+                "reputation": 5,
+                "memoryTags": ["ballroom_theodore"]
+              },
+              "nextScene": "c6s2"
+            },
+            {
+              "text": "Dance with Lucien.",
+              "effects": {
+                "relationships": { "Lucien": 14 },
+                "reputation": 4,
+                "memoryTags": ["ballroom_lucien"]
+              },
+              "nextScene": "c6s2"
+            },
+            {
+              "text": "Stay alone, observe.",
+              "effects": {
+                "pride": 6,
+                "memoryTags": ["observed_alone"]
+              },
+              "nextScene": "c6s2"
+            }
+          ]
+        },
+        {
+          "id": "c6s2",
+          "speaker": "Vivienne",
+          "text": "Your grace tonight could secure a powerful alliance. Choose wisely.",
+          "choices": [
+            {
+              "text": "Offer a hand to Lady Penelope (high influence).",
+              "effects": {
+                "influence": 8,
+                "relationships": { "Vivienne": 5 },
+                "memoryTags": ["alliance_penelope"]
+              },
+              "nextScene": "c7s1"
+            },
+            {
+              "text": "Refuse any political maneuver.",
+              "effects": {
+                "influence": -5,
+                "memoryTags": ["refused_alliance"]
+              },
+              "nextScene": "c7s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter7",
+      "title": "Secrets Revealed",
+      "scenes": [
+        {
+          "id": "c7s1",
+          "speaker": "Lucien",
+          "text": "Mema, I must confess – I have been in debt to the Marquess. I feared losing you.",
+          "choices": [
+            {
+              "text": "Forgive him.",
+              "effects": {
+                "relationships": { "Lucien": 12 },
+                "trust": 8,
+                "memoryTags": ["forgave_lucien"]
+              },
+              "nextScene": "c7s2"
+            },
+            {
+              "text": "Express disappointment.",
+              "effects": {
+                "relationships": { "Lucien": -6 },
+                "trust": -4,
+                "memoryTags": ["disappointed_lucien"]
+              },
+              "nextScene": "c7s2"
+            },
+            {
+              "text": "Keep the secret to yourself.",
+              "effects": {
+                "relationships": { "Lucien": 4 },
+                "trust": 2,
+                "memoryTags": ["kept_secret"]
+              },
+              "nextScene": "c7s2"
+            }
+          ]
+        },
+        {
+          "id": "c7s2",
+          "speaker": "Theodore",
+          "text": "Mema, honesty is the foundation of any partnership. I respect your courage.",
+          "choices": [
+            {
+              "text": "Strengthen bond with Theodore.",
+              "effects": {
+                "relationships": { "Theodore": 10 },
+                "trust": 6,
+                "memoryTags": ["theodore_respect"]
+              },
+              "nextScene": "c8s1"
+            },
+            {
+              "text": "Remain distant.",
+              "effects": {
+                "relationships": { "Theodore": -3 },
+                "memoryTags": ["theodore_distance"]
+              },
+              "nextScene": "c8s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter8",
+      "title": "A Heart Learns",
+      "scenes": [
+        {
+          "id": "c8s1",
+          "speaker": "Narrator",
+          "text": "Your choices have woven a tapestry of trust, pride, and reputation. The town watches your growth.",
+          "choices": [
+            {
+              "text": "Embrace humility and seek wisdom.",
+              "effects": {
+                "wisdom": 12,
+                "pride": -8,
+                "memoryTags": ["humble_growth"]
+              },
+              "nextScene": "c8s2"
+            },
+            {
+              "text": "Lean into confidence, cherish your status.",
+              "effects": {
+                "pride": 10,
+                "reputation": 8,
+                "memoryTags": ["confident_ascend"]
+              },
+              "nextScene": "c8s2"
+            }
+          ]
+        },
+        {
+          "id": "c8s2",
+          "speaker": "Eleanor",
+          "text": "Mema, I admire the woman you are becoming. May I share a secret of my own?",
+          "choices": [
+            {
+              "text": "Listen attentively.",
+              "effects": {
+                "relationships": { "Eleanor": 10 },
+                "trust": 7,
+                "memoryTags": ["eleanor_confidant"]
+              },
+              "nextScene": "c9s1"
+            },
+            {
+              "text": "Dismiss her.",
+              "effects": {
+                "relationships": { "Eleanor": -5 },
+                "memoryTags": ["eleanor_dismissed"]
+              },
+              "nextScene": "c9s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter9",
+      "title": "Society Watches",
+      "scenes": [
+        {
+          "id": "c9s1",
+          "speaker": "Narrator",
+          "text": "A scandal rumor spreads, fueled by past pride and misunderstandings.",
+          "choices": [
+            {
+              "text": "Address the town openly.",
+              "effects": {
+                "reputation": -5,
+                "pride": -6,
+                "memoryTags": ["open_address"]
+              },
+              "nextScene": "c9s2"
+            },
+            {
+              "text": "Let the gossip fade.",
+              "effects": {
+                "reputation": -12,
+                "memoryTags": ["let_gossip"]
+              },
+              "nextScene": "c9s2"
+            }
+          ]
+        },
+        {
+          "id": "c9s2",
+          "speaker": "Vivienne",
+          "text": "Your reputation now defines your power. Choose the legacy you wish to leave.",
+          "choices": [
+            {
+              "text": "Seek redemption through kindness.",
+              "effects": {
+                "reputation": 10,
+                "relationships": { "Vivienne": 8 },
+                "memoryTags": ["redeem_vivienne"]
+              },
+              "nextScene": "c10s1"
+            },
+            {
+              "text": "Embrace the queen of society role.",
+              "effects": {
+                "influence": 12,
+                "pride": 8,
+                "memoryTags": ["queen_society"]
+              },
+              "nextScene": "c10s1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapter10",
+      "title": "The Choice of the Heart",
+      "scenes": [
+        {
+          "id": "c10s1",
+          "speaker": "Narrator",
+          "text": "All threads converge. Your final decision will shape the ending you receive.",
+          "choices": [
+            {
+              "text": "Pursue True Love with Theodore.",
+              "effects": {
+                "ending": "true_love",
+                "memoryTags": ["ending_true_love"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Embrace the passionate, risky path with Lucien.",
+              "effects": {
+                "ending": "charming_mistake",
+                "memoryTags": ["ending_charming"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Choose independence, focusing on self‑growth.",
+              "effects": {
+                "ending": "independent_woman",
+                "memoryTags": ["ending_independent"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Leverage reputation to become a societal leader.",
+              "effects": {
+                "ending": "queen_of_society",
+                "memoryTags": ["ending_queen"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Let pride dominate and watch relationships crumble.",
+              "effects": {
+                "ending": "lonely_pride",
+                "memoryTags": ["ending_lonely"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Become the matchmaker, helping all friends find love.",
+              "effects": {
+                "ending": "matchmaker",
+                "memoryTags": ["ending_matchmaker"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Accept the scandal, letting the town turn against you.",
+              "effects": {
+                "ending": "scandal",
+                "memoryTags": ["ending_scandal"]
+              },
+              "nextScene": "ending"
+            },
+            {
+              "text": "Challenge Vivienne, becoming rival queens.",
+              "effects": {
+                "ending": "rival_queens",
+                "memoryTags": ["ending_rival"]
+              },
+              "nextScene": "ending"
+            }
+          ]
+        },
+        {
+          "id": "ending",
+          "speaker": "Narrator",
+          "text": "[The game will render the appropriate ending based on the chosen option and the underlying stats. The Book of Choices will then list every major decision you made, allowing you to replay specific chapters.]",
+          "choices": []
+        }
+      ]
+    }
+  ]
+}
