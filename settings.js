@@ -34,11 +34,13 @@ export function initUI() {
   });
 
   // Text speed
-  const savedSpeed = localStorage.getItem('mema_text_speed') || '50';
+  const savedSpeed = localStorage.getItem('mema_text_speed') || '30';
   speedRange.value = savedSpeed;
+  window.MEMA = window.MEMA || {};
+  window.MEMA.TEXT_SPEED = parseInt(savedSpeed, 10);
+  
   speedRange.addEventListener('input', e => {
     localStorage.setItem('mema_text_speed', e.target.value);
-    // adjust global speed used by dialogue.js (simple example)
     window.MEMA.TEXT_SPEED = parseInt(e.target.value, 10);
   });
 }

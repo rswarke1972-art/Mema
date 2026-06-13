@@ -52,16 +52,28 @@ export const ACHIEVEMENTS = [
   },
 ];
 
+import { saveGameState } from './save.js';
+
 /**
  * Unlock an achievement and trigger a brief animation.
  * @param {string} id - Achievement id.
  */
 export function unlockAchievement(id) {
   const ach = ACHIEVEMENTS.find((a) => a.id === id);
-  if (!ach || ach.unlocked) return;
-  ach.unlocked = true;
+  if (!ach) return;
 
-  // Simple toast animation – the HTML must contain a container with id "achievement-toast".
+  if (!window.gameState) return;
+  if (!window.gameState.unlockedAchievements) window.gameState.unlockedAchievements = [];
+  if (window.gameState.unlockedAchievements.includes(id)) {
+    ach.unlocked = true;
+    return;
+  }
+
+  window.gameState.unlockedAchievements.push(id);
+  ach.unlocked = true;
+  saveGameState();
+
+  // Simple toast animation
   const toast = document.createElement("div");
   toast.className = "achievement-toast";
   toast.innerHTML = `
@@ -69,6 +81,5 @@ export function unlockAchievement(id) {
     <span class="ach-text">${ach.name}</span>
   `;
   document.body.appendChild(toast);
-  // Fade in/out via CSS animation (defined in styles.css)
   setTimeout(() => toast.remove(), 3500);
 }

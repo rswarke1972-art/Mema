@@ -568,7 +568,7 @@
                 "ending": "true_love",
                 "memoryTags": ["ending_true_love"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_true_love"
             },
             {
               "text": "Embrace the passionate, risky path with Lucien.",
@@ -576,7 +576,7 @@
                 "ending": "charming_mistake",
                 "memoryTags": ["ending_charming"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_charming"
             },
             {
               "text": "Choose independence, focusing on self‑growth.",
@@ -584,7 +584,7 @@
                 "ending": "independent_woman",
                 "memoryTags": ["ending_independent"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_independent"
             },
             {
               "text": "Leverage reputation to become a societal leader.",
@@ -592,7 +592,7 @@
                 "ending": "queen_of_society",
                 "memoryTags": ["ending_queen"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_queen"
             },
             {
               "text": "Let pride dominate and watch relationships crumble.",
@@ -600,7 +600,7 @@
                 "ending": "lonely_pride",
                 "memoryTags": ["ending_lonely"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_lonely"
             },
             {
               "text": "Become the matchmaker, helping all friends find love.",
@@ -608,7 +608,7 @@
                 "ending": "matchmaker",
                 "memoryTags": ["ending_matchmaker"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_matchmaker"
             },
             {
               "text": "Accept the scandal, letting the town turn against you.",
@@ -616,7 +616,7 @@
                 "ending": "scandal",
                 "memoryTags": ["ending_scandal"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_scandal"
             },
             {
               "text": "Challenge Vivienne, becoming rival queens.",
@@ -624,14 +624,86 @@
                 "ending": "rival_queens",
                 "memoryTags": ["ending_rival"]
               },
-              "nextScene": "ending"
+              "nextScene": "ending_rival"
             }
           ]
         },
         {
+          "id": "ending_true_love",
+          "speaker": "Theodore",
+          "text": "Mema, I have watched you struggle, err, and grow. Through it all, my respect has only deepened... and my love has never wavered. Will you marry me?",
+          "nextScene": "ending_true_love_2"
+        },
+        {
+          "id": "ending_true_love_2",
+          "speaker": "Narrator",
+          "text": "Holding Theodore's hands, Mema realizes that true love was standing beside her all along. The grand halls of Donwell Abbey echo with joy as their hearts unite.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_charming",
+          "speaker": "Lucien",
+          "text": "Rosemere is far too quiet, Mema. Pack your bags – let us run away to London! With my charm and your wit, we shall conquer the salons!",
+          "nextScene": "ending_charming_2"
+        },
+        {
+          "id": "ending_charming_2",
+          "speaker": "Narrator",
+          "text": "Mema accepts Lucien's passionate, risky offer. London's balls are dazzling, but Lucien's old debts and flighty temperament soon bring a turbulent and costly reality.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_independent",
+          "speaker": "Narrator",
+          "text": "Mema reflects on the traps of hasty matchmakings and hollow suitors. Deciding that her own growth is paramount, she remains single, governing Hartfield with poise, independence, and wisdom.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_queen",
+          "speaker": "Narrator",
+          "text": "With her massive influence and perfect reputation, Mema establishes herself as the absolute queen of Rosemere society. Every marriage, ball, and rumor is subject to her crown.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_lonely",
+          "speaker": "Narrator",
+          "text": "Her cold pride has alienated everyone. Emma sits alone in the quiet, drafty parlor of Hartfield. Her status is untouched, but her friends have drifted away in silence.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_matchmaker",
+          "speaker": "Clara",
+          "text": "Mema, I cannot thank you enough! Because you set your own concerns aside, Sir Edwin and I have wed. You have given us our happy ending!",
+          "nextScene": "ending_matchmaker_2"
+        },
+        {
+          "id": "ending_matchmaker_2",
+          "speaker": "Narrator",
+          "text": "Emma watches them smile, her heart full. She has found her own calling as the town's beloved matchmaking cupid, finding joy in creating happiness for others.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_scandal",
+          "speaker": "Narrator",
+          "text": "The meddling is exposed and the town turns against her in fury. Exiled from high society, Mema leaves Rosemere in disgrace, bearing the heavy cost of her social disasters.",
+          "nextScene": "ending"
+        },
+        {
+          "id": "ending_rival",
+          "speaker": "Vivienne",
+          "text": "Do not think you rule this parish, Mema! I shall contest every assembly and every card room. The crown is mine!",
+          "nextScene": "ending_rival_2"
+        },
+        {
+          "id": "ending_rival_2",
+          "speaker": "Narrator",
+          "text": "Emma meets Vivienne's gaze with cold steel. Rosemere splits into two rival factions, locking the queens in a lifelong waltz of elegant cold-war snubs.",
+          "nextScene": "ending"
+        },
+        {
           "id": "ending",
           "speaker": "Narrator",
-          "text": "[The game will render the appropriate ending based on the chosen option and the underlying stats. The Book of Choices will then list every major decision you made, allowing you to replay specific chapters.]",
+          "text": "Mema's story has ended, but every choice remains recorded. Open your Journal to view the Book of Choices, your final stats, and achievements, or restart the adventure.",
           "choices": []
         }
       ]

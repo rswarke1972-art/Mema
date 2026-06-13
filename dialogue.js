@@ -1,9 +1,6 @@
 // dialogue.js – Handles displaying dialogue lines with typewriter animation and speaker info
 import { playSound } from './utils.js';
 
-// Configuration
-const TYPE_SPEED = 30; // ms per character, can be overridden via settings
-
 /**
  * Render a single dialogue line.
  * @param {Object} params
@@ -16,25 +13,44 @@ export function renderDialogue({ speaker, text, container, onComplete }) {
   // Resolve memory tokens like {{memory:trust:Theodore}}
   const resolvedText = resolveMemoryTokens(text);
 
-  const lineElem = document.createElement('div');
-  lineElem.className = 'dialogue-line';
-  lineElem.innerHTML = `<span class="speaker-name">${speaker}</span>: <span class="dialogue-text"></span>`;
-  container.appendChild(lineElem);
-  const textElem = lineElem.querySelector('.dialogue-text');
+  // Clear previous dialogue inside container
+  container.innerHTML = '';
+
+  const card = document.createElement('div');
+  card.className = 'dialogue-card';
+  card.innerHTML = `
+    <span class="speaker-name">${speaker}</span>
+    <p class="dialogue-text"></p>
+  `;
+  container.appendChild(card);
+
+  const textElem = card.querySelector('.dialogue-text');
+  
+  // Use text speed setting from configuration, default to 30ms per char
+  const textSpeedSetting = window.MEMA?.TEXT_SPEED;
+  const typeSpeed = (textSpeedSetting !== undefined) ? textSpeedSetting : 30;
 
   let i = 0;
+  let sfxCounter = 0;
+
   function type() {
     if (i < resolvedText.length) {
       textElem.textContent += resolvedText.charAt(i);
       i++;
-      setTimeout(type, TYPE_SPEED);
+      
+      // Play mechanical typewriter sound every 2 characters to sound natural
+      if (sfxCounter % 2 === 0) {
+        playSound('typewriter');
+      }
+      sfxCounter++;
+      
+      setTimeout(type, typeSpeed);
     } else {
-      // small pause then callback
-      setTimeout(() => onComplete && onComplete(lineElem), 200);
+      // Small pause after typing finishes, then trigger completion callback
+      setTimeout(() => onComplete && onComplete(), 150);
     }
   }
-  // optional sound per character
-  playSound('typewriter');
+
   type();
 }
 
@@ -43,13 +59,29 @@ export function renderDialogue({ speaker, text, container, onComplete }) {
  * Example token: {{memory:trust:Theodore}}
  */
 function resolveMemoryTokens(text) {
+  if (!text) return '';
   return text.replace(/{{memory:([^:}]+):([^}]+)}}/g, (match, type, character) => {
-    const mem = window.gameMemory?.[character] || {};
+    let key = character.toLowerCase().replace(/\s+/g, '');
+    if (key === 'elleanor') key = 'eleanor';
+
+    // Retrieve relationship object from state
+    let rel = window.gameState?.relationships?.[key] || {};
+    if (typeof rel === 'number') {
+      rel = { affection: rel, trust: 0 };
+    }
+
     switch (type) {
       case 'trust':
-        return mem.trust >= 70 ? 'trusts you implicitly' : mem.trust >= 40 ? 'seems cautious' : 'distrusts you';
+        const trustVal = rel.trust || 0;
+        return trustVal >= 60 ? 'trusts you implicitly' : trustVal >= 30 ? 'seems cautious' : 'distrusts you';
+      case 'affection':
+        const affVal = rel.affection || 0;
+        return affVal >= 60 ? 'looks at you warmly' : affVal >= 30 ? 'acknowledges you politely' : 'keeps their distance';
       case 'kind':
-        return mem.kind ? 'remembers your kindness' : 'has yet to see your gentle side';
+        // Check flags or general relationship
+        return (window.gameState?.flags?.[`${key}_kindness`] || (rel.affection > 40)) 
+          ? 'remembers your kindness' 
+          : 'has yet to see your gentle side';
       default:
         return '';
     }

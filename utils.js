@@ -56,16 +56,50 @@ MEMA.utils = {
   // ------- Audio helpers -------
   /**
    * Play a short sound effect (e.g., typewriter click).
-   * @param {string} name - identifier from MEMA.CONFIG.AUDIO or custom.
    */
   playSound(name) {
-    const url = MEMA.CONFIG.AUDIO[name];
+    if (name === 'typewriter') {
+      // Synthesize a beautiful typewriter keystroke click using Web Audio API
+      try {
+        const audioCtx = window.MEMA?.AUDIO_CONTEXT || new (window.AudioContext || window.webkitAudioContext)();
+        if (!window.MEMA.AUDIO_CONTEXT) {
+          window.MEMA.AUDIO_CONTEXT = audioCtx;
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        
+        // Setup oscillator and envelope for a crisp keyboard mechanical click
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc.type = 'triangle';
+        // Randomize pitch slightly for organic typing sound
+        const pitch = 250 + Math.random() * 80;
+        osc.frequency.setValueAtTime(pitch, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.04);
+        
+        gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.04);
+      } catch (err) {
+        console.warn('Typewriter click synth failed:', err);
+      }
+      return;
+    }
+
+    const url = window.MEMA?.CONFIG?.AUDIO?.[name.toUpperCase()];
     if (!url) return;
     const audio = new Audio(url);
-    audio.volume = 0.3;
-    startButton.addEventListener("click", () => {
-   audio.play();
-});
+    audio.volume = 0.25;
+    audio.play().catch(err => {
+      // Autoplay blocked is handled silently
+    });
   },
   /**
    * General purpose audio player (returns the Audio object for control).
@@ -74,9 +108,9 @@ MEMA.utils = {
     const audio = new Audio(url);
     audio.loop = loop;
     audio.volume = volume;
-    startButton.addEventListener("click", () => {
-   audio.play();
-});
+    audio.play().catch(err => {
+      // Autoplay blocked is handled silently
+    });
     return audio;
   },
   stopAudio(audio) {

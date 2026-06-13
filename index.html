@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>MEMA 🌸✨ – A Regency Romance Visual Novel</title>
     <meta name="description" content="Every Choice Rewrites the Heart – a premium interactive story game.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="assets/svg/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,7 +17,11 @@
         <!-- Header -->
         <header id="header" class="header">
             <h1 class="title">MEMA 🌸✨</h1>
-            <button id="settings-btn" class="icon-btn" aria-label="Settings"><span class="icon">⚙️</span></button>
+            <div class="header-controls">
+                <button id="pwa-install-btn" class="icon-btn hidden" aria-label="Install App"><span class="icon">📲</span></button>
+                <button id="journal-btn" class="icon-btn" aria-label="Journal & Book of Choices"><span class="icon">📖</span></button>
+                <button id="settings-btn" class="icon-btn" aria-label="Settings"><span class="icon">⚙️</span></button>
+            </div>
         </header>
         <!-- Main Content -->
         <main id="main" class="main-content">
@@ -26,6 +32,7 @@
             <div id="stats-bar" class="stats-bar"></div>
         </footer>
     </div>
+
     <!-- Settings Modal -->
     <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
         <div class="modal-content">
@@ -34,10 +41,131 @@
             <label><input type="checkbox" id="toggle-sfx" checked> Sound Effects</label>
             <label><input type="checkbox" id="toggle-animations" checked> Animations</label>
             <label>Theme: <select id="theme-select"><option value="light">Light Romantic</option><option value="dark">Night Romance</option></select></label>
-            <label>Text Speed: <input type="range" id="text-speed" min="30" max="200" step="10" value="50"></label>
+            <label>Text Speed: <input type="range" id="text-speed" min="10" max="120" step="10" value="30"> (faster <-> slower)</label>
             <button id="close-settings" class="btn">Close</button>
         </div>
     </div>
+
+    <!-- Journal Modal (Book of Choices, Saves, Relationships, Gallery, Music, Flowchart) -->
+    <div id="journal-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="journal-title">
+        <div class="modal-content journal-content">
+            <div class="journal-header">
+                <h2 id="journal-title">Journal & Logbook</h2>
+                <button id="close-journal" class="close-btn">&times;</button>
+            </div>
+            <!-- Tabs -->
+            <div class="journal-tabs">
+                <button class="tab-btn active" data-tab="log">Choices</button>
+                <button class="tab-btn" data-tab="saves">Saves</button>
+                <button class="tab-btn" data-tab="relationships">Relationships</button>
+                <button class="tab-btn" data-tab="gallery">Gallery</button>
+                <button class="tab-btn" data-tab="music">Music</button>
+                <button class="tab-btn" data-tab="flowchart">Route</button>
+            </div>
+            <!-- Body -->
+            <div class="journal-body">
+                <!-- Log panel -->
+                <div id="tab-log" class="tab-panel active">
+                    <div class="timeline-container" id="choices-timeline">
+                        <p class="empty-msg">No choices recorded yet.</p>
+                    </div>
+                </div>
+                <!-- Saves panel -->
+                <div id="tab-saves" class="tab-panel">
+                    <div class="slots-container">
+                        <div class="save-slot-card" data-slot="1">
+                            <div class="slot-header">
+                                <span class="slot-title">Save Slot 1</span>
+                                <span class="slot-date">Empty Slot</span>
+                            </div>
+                            <div class="slot-meta">Start your adventure to record state.</div>
+                            <div class="slot-actions">
+                                <button class="btn-save btn-sm">Save</button>
+                                <button class="btn-load btn-sm disabled" disabled>Load</button>
+                            </div>
+                        </div>
+                        <div class="save-slot-card" data-slot="2">
+                            <div class="slot-header">
+                                <span class="slot-title">Save Slot 2</span>
+                                <span class="slot-date">Empty Slot</span>
+                            </div>
+                            <div class="slot-meta">Start your adventure to record state.</div>
+                            <div class="slot-actions">
+                                <button class="btn-save btn-sm">Save</button>
+                                <button class="btn-load btn-sm disabled" disabled>Load</button>
+                            </div>
+                        </div>
+                        <div class="save-slot-card" data-slot="3">
+                            <div class="slot-header">
+                                <span class="slot-title">Save Slot 3</span>
+                                <span class="slot-date">Empty Slot</span>
+                            </div>
+                            <div class="slot-meta">Start your adventure to record state.</div>
+                            <div class="slot-actions">
+                                <button class="btn-save btn-sm">Save</button>
+                                <button class="btn-load btn-sm disabled" disabled>Load</button>
+                            </div>
+                        </div>
+                        <div class="save-slot-card" data-slot="0">
+                            <div class="slot-header">
+                                <span class="slot-title">Autosave</span>
+                                <span class="slot-date">No Auto-Save</span>
+                            </div>
+                            <div class="slot-meta">System automatically saves your choices.</div>
+                            <div class="slot-actions">
+                                <button class="btn-load btn-sm disabled" disabled>Load</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Relationships panel -->
+                <div id="tab-relationships" class="tab-panel">
+                    <div id="relationship-bars" class="relationship-bars">
+                        <!-- Bars dynamically loaded -->
+                    </div>
+                </div>
+                <!-- Gallery panel -->
+                <div id="tab-gallery" class="tab-panel">
+                    <div class="gallery-grid" id="cg-gallery-grid">
+                        <!-- Grid dynamically loaded -->
+                    </div>
+                </div>
+                <!-- Music Room panel -->
+                <div id="tab-music" class="tab-panel">
+                    <div class="music-room">
+                        <div class="music-controls">
+                            <button id="music-play-pause-btn" class="btn btn-primary">Play Ambient</button>
+                            <span id="now-playing-title" class="track-title-display">Music Room Ambient</span>
+                            <div class="visualizer-bars hidden" id="audio-visualizer">
+                                <div class="vbar"></div>
+                                <div class="vbar"></div>
+                                <div class="vbar"></div>
+                                <div class="vbar"></div>
+                            </div>
+                        </div>
+                        <div class="track-list" id="music-track-list">
+                            <!-- Tracks dynamically loaded -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Flowchart panel -->
+                <div id="tab-flowchart" class="tab-panel">
+                    <div class="flowchart-scroll">
+                        <div class="flowchart-container" id="flowchart-container">
+                            <!-- Dynamic Flowchart Tree -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Fullscreen illustration">
+        <span class="close-lightbox" id="close-lightbox">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Fullscreen illustration">
+    </div>
+
     <script type="module" src="config.js"></script>
     <script type="module" src="utils.js"></script>
     <script type="module" src="app.js"></script>
